@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muziekcursus Webapp</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1, h2, h3 {
+      color: #005288;
+    }
+    .card {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .button {
+      display: inline-block;
+      background: #005288;
+      color: white;
+      padding: 10px 15px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .button:hover {
+      background: #003f5c;
+    }
+    .link {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="container">
+    <h1>🎶 Mini Muziekcursus Webapp</h1>
+    <p><strong>Voor kinderen vanaf 9 jaar</strong> – Leer zelf muziek spelen op je Yamaha synthesizer!</p>
+
+    <div v-for="(week, index) in cursus" :key="index" class="card">
+      <h2>{{ week.titel }}</h2>
+      <div v-for="(dag, i) in week.dagen" :key="i">
+        <p><strong>{{ dag.dag }}:</strong>
+          <span v-if="dag.link">
+            <a :href="dag.link" class="link" target="_blank">{{ dag.tekst }}</a>
+          </span>
+          <span v-else>{{ dag.tekst }}</span>
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>💡 Bonusmateriaal</h3>
+      <ul>
+        <li><a href="https://www.makingmusicfun.net/htm/f_printit_free_printable_music_worksheets.php" class="link" target="_blank">Werkbladen & kleurplaten met noten</a></li>
+        <li><a href="https://www.musictechteacher.com/music_quizzes/quiz_notes/quiz_notes_main.htm" class="link" target="_blank">Online quizjes om noten te leren</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        cursus: [
+          {
+            titel: '🌟 Week 1: De piano ontdekken & notennamen leren',
+            dagen: [
+              { dag: 'Dag 1', tekst: 'Bekijk dit filmpje over toetsnamen', link: 'https://www.youtube.com/watch?v=vphWgqbF-AM' },
+              { dag: 'Dag 2', tekst: 'Speel: C - D - E - C - D - E - E - F - G' },
+              { dag: 'Dag 3', tekst: 'Oefen noten lezen (C4–G4)', link: 'https://www.musictheory.net/exercises/note' },
+              { dag: 'Dag 4', tekst: 'Luister: Mary Had a Little Lamb', link: 'https://www.youtube.com/watch?v=F7jSp2xmmEE' },
+              { dag: 'Dag 5–7', tekst: 'Vrij spelen en zelf melodietje maken' }
+            ]
+          },
+          {
+            titel: '🎵 Week 2: Ritmes en noten op papier leren herkennen',
+            dagen: [
+              { dag: 'Dag 1', tekst: 'Intro tot notenschrift (filmpje)', link: 'https://www.youtube.com/watch?v=0vG2_m_bvYM' },
+              { dag: 'Dag 2', tekst: 'Download Note Rush', link: 'https://www.noterush.app/' },
+              { dag: 'Dag 3', tekst: 'Print en speel: Twinkle Twinkle', link: 'https://makingmusicfun.net/pdf/sheet-music/twinkle-twinkle-beginner-piano.pdf' },
+              { dag: 'Dag 4', tekst: 'Maak notenkaarten en speel een spelletje' },
+              { dag: 'Dag 5–7', tekst: 'Speel een muziekverhaal met geluiden' }
+            ]
+          },
+          {
+            titel: '🎼 Week 3: Liedjes leren spelen en opnemen',
+            dagen: [
+              { dag: 'Dag 1', tekst: 'Kies een liedje van deze site', link: 'https://www.makingmusicfun.net/htm/f_mmf_music_library/free-piano-sheet-music.php' },
+              { dag: 'Dag 2–4', tekst: 'Oefen het liedje stukje voor stukje' },
+              { dag: 'Dag 5', tekst: 'Neem jezelf op met de Yamaha of je telefoon' }
+            ]
+          },
+          {
+            titel: '🎉 Week 4: Eigen compositie en miniconcert',
+            dagen: [
+              { dag: 'Dag 1–2', tekst: 'Verzin je eigen melodie van 3–5 noten' },
+              { dag: 'Dag 3–4', tekst: 'Maak een liedje met begin-midden-einde' },
+              { dag: 'Dag 5–7', tekst: 'Geef een optreden of neem je muziek op' }
+            ]
+          }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
